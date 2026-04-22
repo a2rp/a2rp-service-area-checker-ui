@@ -10,6 +10,7 @@ import ServicesGrid from "./components/servicesGrid";
 import TrustStrip from "./components/trustStrip";
 import ZipCheckerForm from "./components/zipCheckerForm";
 import { findRegionByZip } from "./utils/findRegionByZip";
+import Footer from "./components/footer";
 
 const App = () => {
     const [zipCode, setZipCode] = useState("");
@@ -114,6 +115,8 @@ const App = () => {
             <TrustStrip />
 
             <BottomCta handleReset={handleReset} />
+
+            <Footer />
         </>
     );
 };
