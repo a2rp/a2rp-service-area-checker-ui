@@ -4,6 +4,8 @@ Single page React UI to check service availability by ZIP / postal code.
 
 User enters a ZIP code and the interface shows which services are available in that service area (for example plumbing, electrical, drain cleaning, etc.). This type of UI is commonly used by regional service businesses to quickly inform customers whether their location is covered.
 
+![alt text](preview.png)
+
 ## Features
 
 - ZIP code based service availability check
