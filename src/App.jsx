@@ -11,6 +11,7 @@ import TrustStrip from "./components/trustStrip";
 import ZipCheckerForm from "./components/zipCheckerForm";
 import { findRegionByZip } from "./utils/findRegionByZip";
 import Footer from "./components/footer";
+import IframeAutoScrollReceiver from "./components/IframeAutoScrollReceiver";
 
 const App = () => {
     const [zipCode, setZipCode] = useState("");
@@ -83,6 +84,8 @@ const App = () => {
 
     return (
         <>
+            <IframeAutoScrollReceiver />
+
             <HeroSection />
 
             <ZipCheckerForm
