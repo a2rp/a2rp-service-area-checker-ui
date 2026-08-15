@@ -1,143 +1,229 @@
-import React from "react";
+import {
+    FiActivity,
+    FiMap,
+    FiMapPin,
+    FiNavigation,
+    FiRadio,
+    FiServer,
+    FiTool,
+    FiUsers,
+} from "react-icons/fi";
+
 import { Styled } from "./styled";
+
+const coverageReasons = [
+    {
+        icon: FiUsers,
+        title: "Technician Coverage",
+        description:
+            "Certain services require specialized technicians and are only enabled where those teams are actively assigned.",
+    },
+    {
+        icon: FiNavigation,
+        title: "Branch Reach",
+        description:
+            "Service hubs operate within dispatch radius limits to keep travel time practical and response consistent.",
+    },
+    {
+        icon: FiTool,
+        title: "Equipment Availability",
+        description:
+            "Specialized tools and service vehicles may only be available in selected regions or higher-priority zones.",
+    },
+    {
+        icon: FiActivity,
+        title: "Dispatch Load",
+        description:
+            "Capacity can vary by area based on route load, scheduling demand, and emergency prioritization.",
+    },
+];
 
 const CoverageDetails = ({ matchedRegion, hasSearched }) => {
     if (!hasSearched || !matchedRegion) {
         return null;
     }
 
+    const coverageItems = [
+        {
+            icon: FiMap,
+            label: "Service Region",
+            value: matchedRegion.name,
+        },
+        {
+            icon: FiRadio,
+            label: "Coverage Tier",
+            value: matchedRegion.tierLabel,
+        },
+        {
+            icon: FiNavigation,
+            label: "Dispatch Radius",
+            value: matchedRegion.dispatchRadius,
+        },
+        {
+            icon: FiMapPin,
+            label: "Nearest Hub",
+            value: matchedRegion.hub,
+        },
+        {
+            icon: FiUsers,
+            label: "Weekend Support",
+            value: matchedRegion.weekendSupport,
+        },
+        {
+            icon: FiActivity,
+            label: "Emergency Routing",
+            value: matchedRegion.emergencyRouting,
+        },
+        {
+            icon: FiServer,
+            label: "Branch Capacity",
+            value: matchedRegion.branchCapacity,
+        },
+    ];
+
     return (
-        <Styled.Wrapper className="sectionSpace">
-            <div className="container">
-                <Styled.Grid>
-                    <Styled.Card
-                        className="glassCard"
-                        data-aos="fade-right"
-                        data-aos-delay="100"
-                    >
-                        <Styled.Eyebrow>Coverage Details</Styled.Eyebrow>
-                        <Styled.Title>
-                            Regional Service Coverage Information
-                        </Styled.Title>
-                        <Styled.Subtitle>
-                            Your ZIP code falls under an active regional service
-                            zone. The details below reflect dispatch logic,
-                            branch coverage, and service operations for this
-                            area.
-                        </Styled.Subtitle>
+        <Styled.Wrapper className="coverageDetails">
+            <div className="coverageInner">
+                <div className="sectionHeader">
+                    <div>
+                        <span className="eyebrow">03 / COVERAGE DETAILS</span>
 
-                        <Styled.List>
-                            <Styled.ListItem>
-                                <Styled.Label>Service Region</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.name}
-                                </Styled.Value>
-                            </Styled.ListItem>
+                        <h2>
+                            Regional service
+                            <span>coverage.</span>
+                        </h2>
+                    </div>
 
-                            <Styled.ListItem>
-                                <Styled.Label>Coverage Tier</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.tierLabel}
-                                </Styled.Value>
-                            </Styled.ListItem>
+                    <p>
+                        Your ZIP code falls within an active service region.
+                        These operational details determine routing, response
+                        availability, and service capacity.
+                    </p>
+                </div>
 
-                            <Styled.ListItem>
-                                <Styled.Label>Dispatch Radius</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.dispatchRadius}
-                                </Styled.Value>
-                            </Styled.ListItem>
+                <div className="coverageLayout">
+                    <div className="networkCard">
+                        <div className="networkTop">
+                            <div>
+                                <span className="panelLabel">
+                                    ACTIVE REGION
+                                </span>
 
-                            <Styled.ListItem>
-                                <Styled.Label>Nearest Hub</Styled.Label>
-                                <Styled.Value>{matchedRegion.hub}</Styled.Value>
-                            </Styled.ListItem>
+                                <h3>{matchedRegion.name}</h3>
+                            </div>
 
-                            <Styled.ListItem>
-                                <Styled.Label>Weekend Support</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.weekendSupport}
-                                </Styled.Value>
-                            </Styled.ListItem>
+                            <span className="networkStatus">
+                                <i />
+                                Connected
+                            </span>
+                        </div>
 
-                            <Styled.ListItem>
-                                <Styled.Label>Emergency Routing</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.emergencyRouting}
-                                </Styled.Value>
-                            </Styled.ListItem>
+                        <div className="networkMap">
+                            <div className="mapGrid" />
 
-                            <Styled.ListItem>
-                                <Styled.Label>Branch Capacity</Styled.Label>
-                                <Styled.Value>
-                                    {matchedRegion.branchCapacity}
-                                </Styled.Value>
-                            </Styled.ListItem>
-                        </Styled.List>
-                    </Styled.Card>
+                            <div className="signalRing ringOne" />
+                            <div className="signalRing ringTwo" />
 
-                    <Styled.Card
-                        className="glassCard"
-                        data-aos="fade-left"
-                        data-aos-delay="200"
-                    >
-                        <Styled.Eyebrow>Availability Logic</Styled.Eyebrow>
-                        <Styled.Title>
-                            Why Some Services May Vary by ZIP Code
-                        </Styled.Title>
-                        <Styled.Subtitle>
-                            Service availability is determined by operational
-                            factors that help regional teams maintain faster
-                            response times and better technician routing.
-                        </Styled.Subtitle>
+                            <div className="hubPoint">
+                                <span>
+                                    <FiMapPin />
+                                </span>
 
-                        <Styled.Reasons>
-                            <Styled.ReasonCard>
-                                <Styled.ReasonTitle>
-                                    Technician Coverage
-                                </Styled.ReasonTitle>
-                                <Styled.ReasonText>
-                                    Certain services require specialized
-                                    technicians and are only enabled in zones
-                                    where those teams are actively assigned.
-                                </Styled.ReasonText>
-                            </Styled.ReasonCard>
+                                <div>
+                                    <small>PRIMARY HUB</small>
+                                    <strong>{matchedRegion.hub}</strong>
+                                </div>
+                            </div>
 
-                            <Styled.ReasonCard>
-                                <Styled.ReasonTitle>
-                                    Branch Reach
-                                </Styled.ReasonTitle>
-                                <Styled.ReasonText>
-                                    Service hubs operate within dispatch radius
-                                    limits to keep travel time practical and
-                                    service response consistent.
-                                </Styled.ReasonText>
-                            </Styled.ReasonCard>
+                            <span className="zoneTag zoneOne">
+                                Coverage Zone
+                            </span>
 
-                            <Styled.ReasonCard>
-                                <Styled.ReasonTitle>
-                                    Equipment Availability
-                                </Styled.ReasonTitle>
-                                <Styled.ReasonText>
-                                    Specialized tools and service vehicles may
-                                    only be available in selected regions or
-                                    higher-priority zones.
-                                </Styled.ReasonText>
-                            </Styled.ReasonCard>
+                            <span className="zoneTag zoneTwo">
+                                Dispatch Network
+                            </span>
+                        </div>
 
-                            <Styled.ReasonCard>
-                                <Styled.ReasonTitle>
-                                    Dispatch Load
-                                </Styled.ReasonTitle>
-                                <Styled.ReasonText>
-                                    Active service capacity can vary by area
-                                    based on route load, scheduling demand, and
-                                    emergency prioritization rules.
-                                </Styled.ReasonText>
-                            </Styled.ReasonCard>
-                        </Styled.Reasons>
-                    </Styled.Card>
-                </Styled.Grid>
+                        <div className="networkMeta">
+                            <div>
+                                <span>Coverage Tier</span>
+                                <strong>{matchedRegion.tierLabel}</strong>
+                            </div>
+
+                            <div>
+                                <span>Dispatch Radius</span>
+                                <strong>{matchedRegion.dispatchRadius}</strong>
+                            </div>
+
+                            <div>
+                                <span>Branch Capacity</span>
+                                <strong>{matchedRegion.branchCapacity}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="detailsPanel">
+                        <div className="panelHeading">
+                            <span>REGIONAL OPERATIONS</span>
+
+                            <h3>Coverage information</h3>
+                        </div>
+
+                        <div className="detailsList">
+                            {coverageItems.map((item) => {
+                                const Icon = item.icon;
+
+                                return (
+                                    <article key={item.label}>
+                                        <span className="detailIcon">
+                                            <Icon />
+                                        </span>
+
+                                        <div>
+                                            <span className="detailLabel">
+                                                {item.label}
+                                            </span>
+
+                                            <strong>{item.value}</strong>
+                                        </div>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="logicSection">
+                    <div className="logicHeader">
+                        <span>AVAILABILITY LOGIC</span>
+
+                        <h3>Why service availability can vary by ZIP code.</h3>
+                    </div>
+
+                    <div className="logicGrid">
+                        {coverageReasons.map((reason, index) => {
+                            const Icon = reason.icon;
+
+                            return (
+                                <article key={reason.title}>
+                                    <div className="reasonTop">
+                                        <span className="reasonNumber">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+
+                                        <span className="reasonIcon">
+                                            <Icon />
+                                        </span>
+                                    </div>
+
+                                    <h4>{reason.title}</h4>
+
+                                    <p>{reason.description}</p>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </Styled.Wrapper>
     );

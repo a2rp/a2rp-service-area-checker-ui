@@ -1,38 +1,72 @@
-# a2rp-service-area-checker-ui
+# Service Area Checker UI
 
-Single page React UI to check service availability by ZIP / postal code.
+A premium React interface for checking ZIP-code based service availability, regional coverage, service status, and operational reach.
 
-User enters a ZIP code and the interface shows which services are available in that service area (for example plumbing, electrical, drain cleaning, etc.). This type of UI is commonly used by regional service businesses to quickly inform customers whether their location is covered.
-
-![alt text](preview.png)
+![Service Area Checker UI Preview](./preview.png)
 
 ## Features
 
-- ZIP code based service availability check
-- Cascading service logic
-- Clean single page interface
-- Service cards with availability status
-- Frontend only implementation
+- ZIP code availability checker
+- Full, limited, and unavailable coverage states
+- Regional hub and response information
+- Service-specific availability
+- Coverage detail visualization
+- Ref-based smooth section navigation
+- Active header navigation state
+- Responsive mobile menu
+- Go To Top button
+- Premium responsive UI
+- GitHub Pages deployment support
 
 ## Tech Stack
 
 - React
 - Vite
+- JavaScript
 - styled-components
+- React Icons
 
-## Installation
+## Run Locally
 
 ```bash
-git clone https://github.com/a2rp/a2rp-service-area-checker-ui.git
-cd a2rp-service-area-checker-ui
+git clone https://github.com/a2rp/service-area-checker-ui.git
+cd service-area-checker-ui
 npm install
 npm run dev
 ```
 
-## Follow me:
+## Production Build
 
-- GitHub: https://github.com/a2rp
+```bash
+npm run build
+```
+
+## Deploy
+
+```bash
+npm run deploy
+```
+
+## Developer
+
+**Ashish Ranjan**
+
 - Portfolio: https://www.ashishranjan.net
+- GitHub: https://github.com/a2rp
 - LinkedIn: https://www.linkedin.com/in/aashishranjan
+- CodePen: https://codepen.io/ash1198
 - Facebook: https://www.facebook.com/theash.ashish/
-- Youtube: https://www.youtube.com/@ashishranjan-ashz
+- YouTube: https://www.youtube.com/@ashishranjan-ashz?sub_confirmation=1
+- Email: mailto:ash.ranjan09@gmail.com
+
+## Support
+
+- Support: https://a2rp-donation-page.netlify.app/
+- Buy Me A Coffee: https://buymeacoffee.com/a2rp
+- Patreon: https://patreon.com/a2rp
+
+## License
+
+This project is licensed under the MIT License.
+
+© 2026 Ashish Ranjan

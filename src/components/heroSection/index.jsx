@@ -1,62 +1,157 @@
 import React from "react";
+import {
+    FiArrowDown,
+    FiCheckCircle,
+    FiClock,
+    FiMap,
+    FiMapPin,
+    FiShield,
+    FiZap,
+} from "react-icons/fi";
+
 import { Styled } from "./styled";
 
-const HeroSection = () => {
+const HeroSection = ({ onGoChecker, onGoCoverage }) => {
     return (
-        <Styled.Wrapper className="sectionSpace">
-            <div className="container">
-                <Styled.Inner>
-                    <Styled.Content>
-                        <Styled.Title data-aos="fade-up">
-                            Check Service Availability by ZIP Code
-                        </Styled.Title>
+        <Styled.Wrapper className="heroSection">
+            <div className="heroGrid" />
 
-                        <Styled.Subtitle
-                            data-aos="fade-up"
-                            data-aos-delay="100"
-                        >
-                            Enter your ZIP code to see which home services are
-                            available in your area, including plumbing,
-                            electrical, drain cleaning, and emergency support.
-                        </Styled.Subtitle>
-                    </Styled.Content>
+            <div className="heroGlow heroGlowOne" />
+            <div className="heroGlow heroGlowTwo" />
 
-                    <Styled.Stats>
-                        <Styled.StatCard
-                            data-aos="zoom-in"
-                            data-aos-delay="200"
-                        >
-                            <Styled.StatNumber>8</Styled.StatNumber>
-                            <Styled.StatLabel>Core Services</Styled.StatLabel>
-                        </Styled.StatCard>
+            <div className="heroInner">
+                <div className="heroContent">
+                    <div className="eyebrow">
+                        <span className="statusDot" />
+                        <span>Service Network Online</span>
+                    </div>
 
-                        <Styled.StatCard
-                            data-aos="zoom-in"
-                            data-aos-delay="300"
-                        >
-                            <Styled.StatNumber>3</Styled.StatNumber>
-                            <Styled.StatLabel>Regional Hubs</Styled.StatLabel>
-                        </Styled.StatCard>
+                    <h1>
+                        Know what's available
+                        <span>before you book.</span>
+                    </h1>
 
-                        <Styled.StatCard
-                            data-aos="zoom-in"
-                            data-aos-delay="400"
-                        >
-                            <Styled.StatNumber>24/7</Styled.StatNumber>
-                            <Styled.StatLabel>
-                                Emergency Support
-                            </Styled.StatLabel>
-                        </Styled.StatCard>
+                    <p className="heroDescription">
+                        Check your ZIP code to instantly see service
+                        availability, regional coverage, dispatch status, and
+                        supported home services in your area.
+                    </p>
 
-                        <Styled.StatCard
-                            data-aos="zoom-in"
-                            data-aos-delay="500"
+                    <div className="heroActions">
+                        <button
+                            className="primaryAction"
+                            type="button"
+                            onClick={onGoChecker}
                         >
-                            <Styled.StatNumber>Same Day</Styled.StatNumber>
-                            <Styled.StatLabel>Fast Dispatch</Styled.StatLabel>
-                        </Styled.StatCard>
-                    </Styled.Stats>
-                </Styled.Inner>
+                            Check my ZIP code
+                            <FiArrowDown />
+                        </button>
+
+                        <button
+                            className="secondaryAction"
+                            type="button"
+                            onClick={onGoCoverage}
+                        >
+                            <FiMap />
+                            Explore coverage
+                        </button>
+                    </div>
+
+                    <div className="trustRow">
+                        <span>
+                            <FiCheckCircle />
+                            Instant availability check
+                        </span>
+
+                        <span>
+                            <FiShield />
+                            No signup required
+                        </span>
+
+                        <span>
+                            <FiClock />
+                            24/7 status visibility
+                        </span>
+                    </div>
+                </div>
+
+                <div className="heroPanel">
+                    <div className="panelHeader">
+                        <div>
+                            <span>NETWORK OVERVIEW</span>
+                            <strong>Coverage Status</strong>
+                        </div>
+
+                        <span className="liveStatus">
+                            <i />
+                            Live
+                        </span>
+                    </div>
+
+                    <div className="mapPreview">
+                        <div className="mapGrid" />
+
+                        <span className="mapPoint pointOne">
+                            <i />
+                            North
+                        </span>
+
+                        <span className="mapPoint pointTwo">
+                            <i />
+                            Central
+                        </span>
+
+                        <span className="mapPoint pointThree">
+                            <i />
+                            South
+                        </span>
+
+                        <div className="mapCenter">
+                            <FiMapPin />
+                        </div>
+                    </div>
+
+                    <div className="panelStats">
+                        <article>
+                            <span>01</span>
+                            <strong>8</strong>
+                            <p>Core services</p>
+                        </article>
+
+                        <article>
+                            <span>02</span>
+                            <strong>3</strong>
+                            <p>Regional hubs</p>
+                        </article>
+
+                        <article>
+                            <span>03</span>
+                            <strong>24/7</strong>
+                            <p>Emergency support</p>
+                        </article>
+
+                        <article>
+                            <span>04</span>
+                            <strong>
+                                <FiZap />
+                                Fast
+                            </strong>
+                            <p>Dispatch response</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div className="heroFooter">
+                <span>SCROLL TO CHECK AVAILABILITY</span>
+
+                <button
+                    type="button"
+                    onClick={onGoChecker}
+                    aria-label="Go to ZIP checker"
+                >
+                    <FiArrowDown />
+                </button>
             </div>
         </Styled.Wrapper>
     );

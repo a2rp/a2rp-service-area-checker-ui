@@ -1,7 +1,15 @@
-import React from "react";
+import {
+    FiArrowRight,
+    FiCheckCircle,
+    FiCrosshair,
+    FiInfo,
+    FiMapPin,
+    FiSearch,
+} from "react-icons/fi";
+
 import { Styled } from "./styled";
 
-const sampleZips = ["560048", "560066", "560001", "560063"];
+const sampleZips = ["110001", "400001", "560001", "700001"];
 
 const ZipCheckerForm = ({ zipCode, setZipCode, handleCheckZip, error }) => {
     const handleSubmit = (event) => {
@@ -9,75 +17,140 @@ const ZipCheckerForm = ({ zipCode, setZipCode, handleCheckZip, error }) => {
         handleCheckZip();
     };
 
-    const handleSampleZipClick = (sampleZip) => {
-        setZipCode(sampleZip);
+    const handleSampleZip = (zip) => {
+        setZipCode(zip);
     };
 
     return (
-        <Styled.Wrapper>
-            <div className="container">
-                <Styled.Card
-                    className="glassCard"
-                    data-aos="zoom-in"
-                    data-aos-delay="150"
-                >
-                    <Styled.Header>
-                        <Styled.Eyebrow>Service Area Checker</Styled.Eyebrow>
-                        <Styled.Title>
-                            Find Services Available in Your ZIP Code
-                        </Styled.Title>
-                        <Styled.Subtitle>
-                            Enter a valid ZIP code to check coverage, service
-                            availability, nearest hub, and response estimates
-                            for your area.
-                        </Styled.Subtitle>
-                    </Styled.Header>
+        <Styled.Wrapper className="zipCheckerForm">
+            <div className="checkerInner">
+                <div className="checkerIntro">
+                    <div className="sectionLabel">
+                        <span className="labelIcon">
+                            <FiCrosshair />
+                        </span>
 
-                    <Styled.Form onSubmit={handleSubmit}>
-                        <Styled.InputWrap>
-                            <Styled.Input
+                        <span>01 / Availability Checker</span>
+                    </div>
+
+                    <h2>
+                        Check service
+                        <span>availability.</span>
+                    </h2>
+
+                    <p>
+                        Enter your 6-digit ZIP code to see whether our service
+                        network is available in your area and which services can
+                        be scheduled.
+                    </p>
+
+                    <div className="introPoints">
+                        <span>
+                            <FiCheckCircle />
+                            Instant coverage status
+                        </span>
+
+                        <span>
+                            <FiCheckCircle />
+                            Service-by-service availability
+                        </span>
+
+                        <span>
+                            <FiCheckCircle />
+                            No account required
+                        </span>
+                    </div>
+                </div>
+
+                <div className="checkerCard">
+                    <div className="cardTop">
+                        <div>
+                            <span className="cardEyebrow">LOCATION SEARCH</span>
+
+                            <h3>Enter your ZIP code</h3>
+                        </div>
+
+                        <span className="secureBadge">
+                            <FiMapPin />
+                            Coverage
+                        </span>
+                    </div>
+
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="serviceZip">ZIP CODE</label>
+
+                        <div
+                            className={`inputShell ${error ? "hasError" : ""}`}
+                        >
+                            <span className="inputIcon">
+                                <FiSearch />
+                            </span>
+
+                            <input
+                                id="serviceZip"
                                 type="text"
                                 inputMode="numeric"
-                                maxLength={6}
-                                placeholder="Enter ZIP code"
+                                autoComplete="postal-code"
+                                placeholder="Enter 6-digit ZIP code"
                                 value={zipCode}
+                                maxLength={6}
                                 onChange={(event) => {
                                     const value = event.target.value
                                         .replace(/\D/g, "")
                                         .slice(0, 6);
+
                                     setZipCode(value);
                                 }}
                             />
-                        </Styled.InputWrap>
 
-                        <Styled.Button type="submit">
-                            Check Availability
-                        </Styled.Button>
-                    </Styled.Form>
+                            <span className="digitCount">
+                                {zipCode.length}/6
+                            </span>
+                        </div>
 
-                    {error ? (
-                        <Styled.ErrorText>{error}</Styled.ErrorText>
-                    ) : null}
+                        {error && (
+                            <div className="errorMessage" role="alert">
+                                <FiInfo />
+                                <span>{error}</span>
+                            </div>
+                        )}
 
-                    <Styled.HelperText>
-                        Coverage is matched using regional service rules, branch
-                        reach, and active dispatch zones.
-                    </Styled.HelperText>
+                        <button className="submitButton" type="submit">
+                            Check availability
+                            <FiArrowRight />
+                        </button>
+                    </form>
 
-                    <Styled.Chips>
-                        {sampleZips.map((sampleZip, index) => (
-                            <Styled.Chip
-                                type="button"
-                                key={sampleZip}
-                                onClick={() => handleSampleZipClick(sampleZip)}
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
-                            >
-                                {sampleZip}
-                            </Styled.Chip>
-                        ))}
-                    </Styled.Chips>
-                </Styled.Card>
+                    <div className="sampleSection">
+                        <div className="sampleHeading">
+                            <span>TRY A SAMPLE ZIP</span>
+                            <span className="divider" />
+                        </div>
+
+                        <div className="sampleList">
+                            {sampleZips.map((zip) => (
+                                <button
+                                    key={zip}
+                                    type="button"
+                                    onClick={() => handleSampleZip(zip)}
+                                    className={zipCode === zip ? "active" : ""}
+                                >
+                                    <FiMapPin />
+                                    {zip}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="cardFooter">
+                        <span className="statusIndicator">
+                            <i />
+                            Search service operational
+                        </span>
+
+                        <span>6-digit ZIP required</span>
+                    </div>
+                </div>
             </div>
         </Styled.Wrapper>
     );

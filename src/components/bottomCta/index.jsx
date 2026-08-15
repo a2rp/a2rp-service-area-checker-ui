@@ -1,42 +1,78 @@
-import React from "react";
+import { FiArrowUpRight, FiMapPin, FiRefreshCw } from "react-icons/fi";
+
 import { Styled } from "./styled";
 
 const BottomCta = ({ handleReset }) => {
     return (
-        <Styled.Wrapper className="sectionSpace">
-            <div className="container">
-                <Styled.Card
-                    className="glassCard"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                >
-                    <Styled.Content>
-                        <Styled.Eyebrow>Next Step</Styled.Eyebrow>
+        <Styled.Wrapper className="bottomCta">
+            <div className="ctaGrid" />
 
-                        <Styled.Title>
-                            Need Help Choosing the Right Service?
-                        </Styled.Title>
+            <div className="ctaInner">
+                <div className="ctaContent">
+                    <span className="eyebrow">READY TO CHECK AGAIN?</span>
 
-                        <Styled.Text>
-                            Check your ZIP code, review available services, and
-                            connect with the nearest support team for faster
-                            scheduling and better service routing.
-                        </Styled.Text>
-                    </Styled.Content>
+                    <h2>
+                        Find service
+                        <span>availability fast.</span>
+                    </h2>
 
-                    <Styled.Actions>
-                        <Styled.PrimaryButton
+                    <p>
+                        Run another ZIP lookup to compare coverage areas,
+                        regional hubs, service status, and local operational
+                        availability.
+                    </p>
+
+                    <div className="ctaActions">
+                        <button
+                            className="primaryAction"
                             type="button"
                             onClick={handleReset}
                         >
-                            Check Another ZIP
-                        </Styled.PrimaryButton>
+                            <FiRefreshCw />
+                            Check another ZIP
+                        </button>
 
-                        <Styled.SecondaryButton type="button">
-                            Request Callback
-                        </Styled.SecondaryButton>
-                    </Styled.Actions>
-                </Styled.Card>
+                        <a
+                            className="secondaryAction"
+                            href="https://github.com/a2rp/service-area-checker-ui"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            View repository
+                            <FiArrowUpRight />
+                        </a>
+                    </div>
+                </div>
+
+                <div className="ctaPanel">
+                    <div className="panelIcon">
+                        <FiMapPin />
+                    </div>
+
+                    <div className="panelContent">
+                        <span>LOCATION LOOKUP</span>
+
+                        <strong>
+                            One ZIP code.
+                            <br />
+                            Clear coverage.
+                        </strong>
+
+                        <p>
+                            No account required. Just enter a valid ZIP code and
+                            review the available service network.
+                        </p>
+                    </div>
+
+                    <div className="panelFooter">
+                        <span>
+                            <i />
+                            Checker ready
+                        </span>
+
+                        <span>6-digit ZIP</span>
+                    </div>
+                </div>
             </div>
         </Styled.Wrapper>
     );

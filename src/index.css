@@ -1,106 +1,72 @@
-/* =========================
-   CSS RESET
-========================= */
+:root {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #101510;
+    background: #080c0a;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-*,
-*::before,
-*::after {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* =========================
-   ROOT VARIABLES
-========================= */
-
-:root {
-    --color-bg: #050509;
-    --color-bg-soft: #0b0b12;
-    --color-surface: #11111a;
-    --color-surface-2: #171723;
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-strong: rgba(255, 255, 255, 0.14);
-
-    --color-text: #f5f5f7;
-    --color-text-muted: #a1a1b3;
-    --color-text-soft: #7b7b90;
-    --color-heading: #ffffff;
-
-    --color-primary: #22c55e;
-    --color-primary-hover: #16a34a;
-    --color-primary-soft: rgba(34, 197, 94, 0.14);
-
-    --service-available: #22c55e;
-    --service-limited: #f59e0b;
-    --service-unavailable: #ef4444;
-
-    --service-available-bg: rgba(34, 197, 94, 0.14);
-    --service-limited-bg: rgba(245, 158, 11, 0.14);
-    --service-unavailable-bg: rgba(239, 68, 68, 0.14);
-
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28);
-    --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.34);
-    --shadow-glow:
-        0 0 0 1px rgba(34, 197, 94, 0.08), 0 10px 30px rgba(34, 197, 94, 0.08);
-
-    --radius-sm: 12px;
-    --radius-md: 18px;
-    --radius-lg: 24px;
-    --radius-xl: 32px;
-
-    --container-width: 1280px;
-    --header-offset: 32px;
-
-    --transition: 0.3s ease;
-}
-
-/* =========================
-   BASE
-========================= */
-
 html {
     scroll-behavior: smooth;
-}
-
-html,
-body,
-#root {
-    min-height: 100%;
+    background: #080c0a;
 }
 
 body {
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
-    background:
-        radial-gradient(
-            circle at top left,
-            rgba(34, 197, 94, 0.08),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at top right,
-            rgba(255, 255, 255, 0.04),
-            transparent 24%
-        ),
-        linear-gradient(180deg, #050509 0%, #08080d 100%);
-    color: var(--color-text);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
     overflow-x: hidden;
+    background: #080c0a;
+    color: #101510;
 }
 
-/* =========================
-   ELEMENT RESET
-========================= */
+body,
+button,
+input,
+textarea,
+select {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid #76ff9d;
+    outline-offset: 3px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
 img,
 picture,
@@ -111,181 +77,105 @@ svg {
     max-width: 100%;
 }
 
-button,
-input,
-textarea,
-select {
-    font: inherit;
-    color: inherit;
-}
-
-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-input,
-textarea,
-select {
-    border: none;
-    outline: none;
-    background: none;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 ul,
 ol {
     list-style: none;
 }
-
-/* =========================
-   TYPOGRAPHY
-========================= */
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-    color: var(--color-heading);
-    line-height: 1.15;
+h6,
+p,
+span,
+strong,
+small,
+label,
+blockquote,
+cite,
+figcaption,
+li,
+dt,
+dd {
+    color: inherit;
 }
 
-p {
-    color: var(--color-text-muted);
+input,
+textarea {
+    color: inherit;
 }
-
-/* =========================
-   UTILITIES
-========================= */
-
-.container {
-    width: min(100% - 32px, var(--container-width));
-    margin: 0 auto;
-}
-
-.sectionSpace {
-    padding: 100px 0;
-}
-
-.sectionTitle {
-    font-size: clamp(30px, 4vw, 54px);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-}
-
-.sectionSubtitle {
-    margin-top: 14px;
-    max-width: 720px;
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--color-text-muted);
-}
-
-.glassCard {
-    background: rgba(17, 17, 26, 0.72);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-}
-
-.statusBadge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 34px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-}
-
-.availableBadge {
-    color: var(--service-available);
-    background: var(--service-available-bg);
-    border: 1px solid rgba(34, 197, 94, 0.2);
-}
-
-.limitedBadge {
-    color: var(--service-limited);
-    background: var(--service-limited-bg);
-    border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.unavailableBadge {
-    color: var(--service-unavailable);
-    background: var(--service-unavailable-bg);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
-}
-
-*::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.14);
-    border-radius: 999px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.22);
-}
-
-/* =========================
-   SELECTION
-========================= */
 
 ::selection {
-    background: rgba(34, 197, 94, 0.22);
-    color: #ffffff;
+    background: #76ff9d;
+    color: #071009;
 }
 
-/* =========================
-   FOCUS
-========================= */
-
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-a:focus-visible {
-    outline: 2px solid rgba(34, 197, 94, 0.7);
-    outline-offset: 2px;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+::-webkit-scrollbar-track {
+    background: #080c0a;
+}
 
-@media (max-width: 767px) {
-    .sectionSpace {
-        padding: 72px 0;
+::-webkit-scrollbar-thumb {
+    border: 2px solid #080c0a;
+    border-radius: 999px;
+    background: #31523c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3e6b4c;
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.appMain,
+.topSection,
+.checkerSection,
+.resultSection,
+.servicesSection,
+.coverageSection,
+.howItWorksSection,
+.trustSection,
+.bottomCtaSection {
+    width: 100%;
+}
+
+.checkerSection,
+.resultSection,
+.servicesSection,
+.coverageSection,
+.howItWorksSection {
+    scroll-margin-top: 88px;
+}
+
+@media (max-width: 900px) {
+    .checkerSection,
+    .resultSection,
+    .servicesSection,
+    .coverageSection,
+    .howItWorksSection {
+        scroll-margin-top: 76px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    .sectionSubtitle {
-        font-size: 15px;
-        line-height: 1.7;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

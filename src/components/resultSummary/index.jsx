@@ -1,4 +1,11 @@
-import React from "react";
+import {
+    FiAlertTriangle,
+    FiCheckCircle,
+    FiClock,
+    FiMapPin,
+    FiNavigation,
+} from "react-icons/fi";
+
 import { Styled } from "./styled";
 
 const coverageLabelMap = {
@@ -8,9 +15,9 @@ const coverageLabelMap = {
 };
 
 const coverageClassMap = {
-    full: "availableBadge",
-    partial: "limitedBadge",
-    unavailable: "unavailableBadge",
+    full: "available",
+    partial: "limited",
+    unavailable: "unavailable",
 };
 
 const ResultSummary = ({ submittedZip, matchedRegion, hasSearched }) => {
@@ -27,85 +34,127 @@ const ResultSummary = ({ submittedZip, matchedRegion, hasSearched }) => {
     const coverageLabel =
         coverageLabelMap[coverageStatus] || "Coverage Available";
 
-    const coverageClassName =
-        coverageClassMap[coverageStatus] || "availableBadge";
+    const coverageClassName = coverageClassMap[coverageStatus] || "available";
+
+    const StatusIcon =
+        coverageStatus === "unavailable" ? FiAlertTriangle : FiCheckCircle;
 
     return (
-        <Styled.Wrapper className="sectionSpace">
-            <div className="container">
-                <Styled.Card
-                    className="glassCard"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                >
-                    <Styled.TopRow>
-                        <Styled.Content>
-                            <Styled.Eyebrow>Coverage Summary</Styled.Eyebrow>
-                            <Styled.Title>
-                                {isOutOfArea
-                                    ? "This ZIP code is currently outside the active service area"
-                                    : "Service coverage found for your ZIP code"}
-                            </Styled.Title>
-                            <Styled.Subtitle>
-                                {isOutOfArea
-                                    ? "We do not currently serve this ZIP code. Please try a nearby supported area or contact support for assistance."
-                                    : "Your ZIP code has been matched with the nearest regional service hub and available service set."}
-                            </Styled.Subtitle>
-                        </Styled.Content>
+        <Styled.Wrapper className="resultSummary">
+            <div className="resultInner">
+                <div className={`resultCard ${coverageClassName}`}>
+                    <div className="statusColumn">
+                        <div className="statusIcon">
+                            <StatusIcon />
+                        </div>
 
-                        <Styled.StatusWrap>
+                        <span className="statusLabel">Coverage result</span>
+
+                        <strong className="statusValue">{coverageLabel}</strong>
+
+                        <span className="statusZip">
+                            ZIP {submittedZip || "-"}
+                        </span>
+                    </div>
+
+                    <div className="resultContent">
+                        <div className="resultHeader">
+                            <div>
+                                <span className="eyebrow">
+                                    SERVICE NETWORK RESPONSE
+                                </span>
+
+                                <h2>
+                                    {isOutOfArea
+                                        ? "This area is not active yet."
+                                        : "Your area is covered."}
+                                </h2>
+                            </div>
+
                             <span
-                                className={`statusBadge ${coverageClassName}`}
+                                className={`coverageBadge ${coverageClassName}`}
                             >
+                                <i />
                                 {coverageLabel}
                             </span>
-                        </Styled.StatusWrap>
-                    </Styled.TopRow>
+                        </div>
 
-                    <Styled.Grid>
-                        <Styled.InfoCard
-                            data-aos="fade-up"
-                            data-aos-delay="150"
-                        >
-                            <Styled.InfoLabel>ZIP Code</Styled.InfoLabel>
-                            <Styled.InfoValue>
-                                {submittedZip || "-"}
-                            </Styled.InfoValue>
-                        </Styled.InfoCard>
+                        <p className="resultDescription">
+                            {isOutOfArea
+                                ? "We could not match this ZIP code with an active regional service hub. You can try another nearby ZIP code or check back later as coverage expands."
+                                : "We matched your ZIP code with an active service region. Review the assigned hub, estimated response window, and service availability below."}
+                        </p>
 
-                        <Styled.InfoCard
-                            data-aos="fade-up"
-                            data-aos-delay="250"
-                        >
-                            <Styled.InfoLabel>Region</Styled.InfoLabel>
-                            <Styled.InfoValue>
-                                {matchedRegion?.name || "Not Available"}
-                            </Styled.InfoValue>
-                        </Styled.InfoCard>
+                        <div className="resultGrid">
+                            <article>
+                                <span className="infoIcon">
+                                    <FiMapPin />
+                                </span>
 
-                        <Styled.InfoCard
-                            data-aos="fade-up"
-                            data-aos-delay="350"
-                        >
-                            <Styled.InfoLabel>Nearest Hub</Styled.InfoLabel>
-                            <Styled.InfoValue>
-                                {matchedRegion?.hub || "Not Assigned"}
-                            </Styled.InfoValue>
-                        </Styled.InfoCard>
+                                <div>
+                                    <span className="infoLabel">ZIP Code</span>
 
-                        <Styled.InfoCard
-                            data-aos="fade-up"
-                            data-aos-delay="450"
-                        >
-                            <Styled.InfoLabel>
-                                Estimated Response
-                            </Styled.InfoLabel>
-                            <Styled.InfoValue>
-                                {matchedRegion?.eta || "Unavailable"}
-                            </Styled.InfoValue>
-                        </Styled.InfoCard>
-                    </Styled.Grid>
-                </Styled.Card>
+                                    <strong>{submittedZip || "-"}</strong>
+                                </div>
+                            </article>
+
+                            <article>
+                                <span className="infoIcon">
+                                    <FiNavigation />
+                                </span>
+
+                                <div>
+                                    <span className="infoLabel">Region</span>
+
+                                    <strong>
+                                        {matchedRegion?.name || "Not Available"}
+                                    </strong>
+                                </div>
+                            </article>
+
+                            <article>
+                                <span className="infoIcon">
+                                    <FiMapPin />
+                                </span>
+
+                                <div>
+                                    <span className="infoLabel">
+                                        Nearest Hub
+                                    </span>
+
+                                    <strong>
+                                        {matchedRegion?.hub || "Not Assigned"}
+                                    </strong>
+                                </div>
+                            </article>
+
+                            <article>
+                                <span className="infoIcon">
+                                    <FiClock />
+                                </span>
+
+                                <div>
+                                    <span className="infoLabel">
+                                        Estimated Response
+                                    </span>
+
+                                    <strong>
+                                        {matchedRegion?.eta || "Unavailable"}
+                                    </strong>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div className="resultFooter">
+                            <span>
+                                <i />
+                                Live coverage lookup completed
+                            </span>
+
+                            <span>Result generated for {submittedZip}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </Styled.Wrapper>
     );

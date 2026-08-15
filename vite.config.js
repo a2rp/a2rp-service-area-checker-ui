@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(() => {
     return {
         plugins: [react()],
-        base: "/a2rp-service-area-checker-ui/",
+        base: "/service-area-checker-ui/",
         build: {
             minify: "esbuild",
             sourcemap: false,
